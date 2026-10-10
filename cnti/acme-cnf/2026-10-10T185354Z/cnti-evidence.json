@@ -1,0 +1,94 @@
+{
+  "_type": "https://in-toto.io/Statement/v1",
+  "subject": [
+    {
+      "name": "cnti-testsuite-results-20261010-185354-377.yml",
+      "digest": {
+        "sha256": "c1b6c16b2883795ce169c789871480974873733bdd89889aeaa5bc26b0760e11"
+      }
+    }
+  ],
+  "predicateType": "https://in-toto.io/attestation/test-result/v0.1",
+  "predicate": {
+    "result": "PASSED",
+    "configuration": [
+      {
+        "name": "config/cnti-testsuite.yaml",
+        "digest": {
+          "sha256": "919e35e8c482b7b71e609c79a186d3ac9c6d8c9f2d553112b24a5bad9b1872ca"
+        }
+      },
+      {
+        "name": "config/values.yaml",
+        "digest": {
+          "sha256": "83ce78c33542946989a0f8412f1800ad97c649630e59f2dcaed759e9e4f1f50e"
+        }
+      }
+    ],
+    "passedTests": [
+      "node_drain",
+      "selinux_options",
+      "container_sock_mounts",
+      "privileged_containers",
+      "cpu_limits",
+      "memory_limits",
+      "non_root_containers",
+      "hostpath_mounts",
+      "latest_tag",
+      "hostport_not_used",
+      "hardcoded_ip_addresses_in_k8s_runtime_configuration",
+      "log_output",
+      "single_process_type",
+      "sig_term_handled",
+      "liveness",
+      "readiness",
+      "increase_decrease_capacity"
+    ],
+    "failedTests": [
+      "zombie_handled",
+      "specialized_init_system"
+    ],
+    "warnedTests": [],
+    "cnti": {
+      "schema_version": 1,
+      "testsuite_version": "v2.3.0-evidence.2",
+      "task": "cert",
+      "label": "CNTi essential",
+      "status": "passed",
+      "exit_code": 0,
+      "passed": 17,
+      "max_passed": 19,
+      "essential_passed": 17,
+      "essential_max_passed": 19,
+      "points": 1700,
+      "maximum_points": 1900,
+      "criteria": [
+        {
+          "group": "cert",
+          "scope": "essential",
+          "min_passed": 15,
+          "min_ratio": null,
+          "declared_count": 19,
+          "max_failed": null,
+          "passed_count": 17,
+          "max_passed": 19,
+          "failed_count": 2,
+          "passed": true
+        }
+      ],
+      "run_date": "2026-10-10T18:53:54Z",
+      "results_file": "cnti-testsuite-results-20261010-185354-377.yml",
+      "self_published": true,
+      "provenance": {
+        "method": "sigstore-keyless",
+        "files": [
+          "oci://ghcr.io/martin-mat/acme/coredns:1.48.3"
+        ],
+        "identity": "https://github.com/martin-mat/acme-cnf/.github/workflows/cnti.yml@refs/heads/main"
+      },
+      "published_files": [],
+      "withheld_files": [],
+      "run_url": "https://github.com/martin-mat/acme-cnf/actions/runs/38077487358"
+    }
+  }
+}
