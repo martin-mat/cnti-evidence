@@ -15,6 +15,16 @@ Each run lands in [`cnti/acme-cnf/<run date>/`](cnti/acme-cnf): the badge, the r
 its JUnit report, `cnti-evidence.json` (an in-toto Test Result statement), and the configuration
 the run used.
 
+## coredns (public adopter)
+
+![CNTi essential](https://github.com/martin-mat/cnti-evidence/raw/main/cnti/coredns/latest/cnti-badge.svg)
+
+Published by the public repository [martin-mat/coredns-helm-chart](https://github.com/martin-mat/coredns-helm-chart),
+whose README shows the same badge from its own `badges` branch. A public project gains the
+history and the configuration record here, and the chart attestation on
+`ghcr.io/martin-mat/charts/coredns`; each run is also downloadable as the run's artifact on
+the Actions page.
+
 ## How to verify, without access to the source
 
 The chart is published to `ghcr.io/martin-mat/acme/coredns`, and the signed statement is
