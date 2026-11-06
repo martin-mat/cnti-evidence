@@ -1,0 +1,226 @@
+---
+name: cnti testsuite
+testsuite_version: v2.3.0
+schema_version: 1
+status: passed
+command: /home/runner/.cnti-testsuite/cnti-testsuite cert
+exit_code: 0
+tools:
+  kubescape: 4.0.12
+  kubescape_framework: nsa
+  kubescape_regolibrary: 2.0.38
+  kyverno: 1.19.1
+  kyverno_policies: release-1.19
+  litmus: 3.31.0
+items:
+- name: node_drain
+  status: passed
+  message: 'node_drain passed: 1 node(s) drained, 1 workload(s) rescheduled'
+  type: essential
+  points: 100
+  start_time: "2026-11-06T10:57:33.744219996Z"
+  end_time: "2026-11-06T10:58:09.426623367Z"
+  task_runtime: 35.682403371
+  details:
+  - 'Node cnti-testsuite-worker: 1 pod(s) of 1 workload(s) evicted in 11 s'
+  - 'Deployment/coredns in coredns-cnti: Ready again on another node within 23 s of
+    eviction'
+- name: selinux_options
+  status: passed
+  message: Pods do not set seLinuxOptions
+  type: essential
+  points: 100
+  start_time: "2026-11-06T10:58:09.439053505Z"
+  end_time: "2026-11-06T10:58:14.487431813Z"
+  task_runtime: 5.048378308
+- name: container_sock_mounts
+  status: passed
+  message: Container engine daemon sockets are not mounted as volumes
+  type: essential
+  points: 100
+  start_time: "2026-11-06T10:58:14.496061999Z"
+  end_time: "2026-11-06T10:58:15.439649096Z"
+  task_runtime: 0.943587097
+- name: privileged_containers
+  status: passed
+  message: No privileged containers
+  type: essential
+  points: 100
+  start_time: "2026-11-06T10:58:15.447765899Z"
+  end_time: "2026-11-06T10:58:15.509021746Z"
+  task_runtime: 0.061255847
+- name: cpu_limits
+  status: passed
+  message: Containers have CPU limits set
+  type: essential
+  points: 100
+  start_time: "2026-11-06T10:58:21.157508679Z"
+  end_time: "2026-11-06T10:58:21.159995286Z"
+  task_runtime: 0.002486607
+- name: memory_limits
+  status: passed
+  message: Containers have memory limits set
+  type: essential
+  points: 100
+  start_time: "2026-11-06T10:58:21.169378914Z"
+  end_time: "2026-11-06T10:58:21.170842721Z"
+  task_runtime: 0.001463807
+- name: non_root_containers
+  status: passed
+  message: Containers run as non-root user and group
+  type: essential
+  points: 100
+  start_time: "2026-11-06T10:58:21.179404549Z"
+  end_time: "2026-11-06T10:58:21.180933612Z"
+  task_runtime: 0.001529063
+- name: hostpath_mounts
+  status: passed
+  message: Containers do not have hostPath mounts
+  type: essential
+  points: 100
+  start_time: "2026-11-06T10:58:21.190035401Z"
+  end_time: "2026-11-06T10:58:23.119745286Z"
+  task_runtime: 1.9297098849999998
+- name: latest_tag
+  status: passed
+  message: Container images are not using the latest tag
+  type: essential
+  points: 100
+  start_time: "2026-11-06T10:58:23.139282161Z"
+  end_time: "2026-11-06T10:58:24.044692585Z"
+  task_runtime: 0.905410424
+- name: hostport_not_used
+  status: passed
+  message: HostPort is not used
+  type: essential
+  points: 100
+  start_time: "2026-11-06T10:58:24.054910446Z"
+  end_time: "2026-11-06T10:58:24.113443309Z"
+  task_runtime: 0.058532863
+- name: hardcoded_ip_addresses_in_k8s_runtime_configuration
+  status: passed
+  message: No hard-coded IP addresses found in the runtime K8s configuration
+  type: essential
+  points: 100
+  start_time: "2026-11-06T10:58:24.125294705Z"
+  end_time: "2026-11-06T10:58:24.126002583Z"
+  task_runtime: 0.000707878
+- name: log_output
+  status: passed
+  message: Resources output logs to stdout and stderr
+  type: essential
+  points: 100
+  start_time: "2026-11-06T10:58:24.147122900Z"
+  end_time: "2026-11-06T10:58:24.396649261Z"
+  task_runtime: 0.249526361
+  details:
+  - 'Deployment/coredns in coredns-cnti: logs from coredns-685dfb5757-9mrz4'
+- name: single_process_type
+  status: passed
+  message: Only one process type used
+  type: essential
+  points: 100
+  start_time: "2026-11-06T10:58:24.420629431Z"
+  end_time: "2026-11-06T10:58:25.667394463Z"
+  task_runtime: 1.2467650319999999
+  details:
+  - 'Deployment/coredns container coredns: no application process besides PID 1'
+- name: zombie_handled
+  status: failed
+  message: Zombie not handled
+  type: essential
+  points: 0
+  start_time: "2026-11-06T10:58:25.680622088Z"
+  end_time: "2026-11-06T10:59:18.479306390Z"
+  task_runtime: 52.798684302
+  remediation:
+  - Make the PID 1 container process to handle/reap zombie processes; enable process
+    namespace sharing in Kubernetes or use specialized Init system.
+  impacted_resources:
+  - kind: Pod
+    name: coredns-685dfb5757-9mrz4
+    namespace: coredns-cnti
+    container: coredns
+    reason: 'process sleep (pid 1110, parent 924) is a zombie: state Z (zombie)'
+- name: sig_term_handled
+  status: passed
+  message: Sig Term handled
+  type: essential
+  points: 100
+  start_time: "2026-11-06T10:59:18.494862970Z"
+  end_time: "2026-11-06T11:00:22.391058533Z"
+  task_runtime: 63.896195563
+  details:
+  - 'Checked coredns-685dfb5757-9mrz4/coredns: PID 1 1363, judged pid(s) 1363, grace
+    30s: 1363 stopped with SIGTERM'
+- name: specialized_init_system
+  status: failed
+  message: Containers do not use specialized init systems (ভ_ভ) ރ
+  type: essential
+  points: 0
+  start_time: "2026-11-06T11:00:23.062087584Z"
+  end_time: "2026-11-06T11:00:23.826729951Z"
+  task_runtime: 0.764642367
+  remediation:
+  - Use init systems that are purpose-built for containers like tini, dumb-init, catatonit,
+    s6-overlay, gopherd.
+  impacted_resources:
+  - kind: Pod
+    name: coredns-685dfb5757-9mrz4
+    namespace: coredns-cnti
+    container: coredns
+    reason: '''/coredns'' as init process'
+- name: liveness
+  status: passed
+  message: All workload resources have at least one container with a liveness probe
+  type: essential
+  points: 100
+  start_time: "2026-11-06T11:00:23.861250152Z"
+  end_time: "2026-11-06T11:00:23.923121298Z"
+  task_runtime: 0.061871146
+  details:
+  - 'Deployment/coredns in coredns-cnti: liveness probe on coredns'
+- name: readiness
+  status: passed
+  message: All workload resources have at least one container with a readiness probe
+  type: essential
+  points: 100
+  start_time: "2026-11-06T11:00:23.942268744Z"
+  end_time: "2026-11-06T11:00:23.999219982Z"
+  task_runtime: 0.056951238
+  details:
+  - 'Deployment/coredns in coredns-cnti: readiness probe on coredns'
+- name: increase_decrease_capacity
+  status: passed
+  message: Replicas increased to deployed count + 2 and decreased back for 1 resource(s)
+  type: essential
+  points: 100
+  start_time: "2026-11-06T11:00:24.035180784Z"
+  end_time: "2026-11-06T11:01:31.343031538Z"
+  task_runtime: 67.307850754
+  details:
+  - 'Restart after scaling: one pod of each of 1 workload(s) deleted at once; 1 Ready
+    again within 31 s'
+summary:
+  total: 19
+  passed: 17
+  failed: 2
+  skipped: 0
+  na: 0
+  error: 0
+  max_passed: 19
+  essential_passed: 17
+  essential_max_passed: 19
+  points: 1700
+  maximum_points: 1900
+  criteria:
+  - group: cert
+    scope: essential
+    min_passed: 15
+    min_ratio:
+    declared_count: 19
+    max_failed:
+    passed_count: 17
+    max_passed: 19
+    failed_count: 2
+    passed: true
